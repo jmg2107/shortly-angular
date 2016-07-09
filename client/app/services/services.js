@@ -10,22 +10,46 @@ angular.module('shortly.services', [])
       url: '/api/links'
     })
     .then(function (res) {
+      console.log("res data is ", res.data);
       return res.data;
     });
   };
-  var addOne = function (link) {
+  var addOne = function (newlink) {
+    console.log("starting POST with ", newlink);
     return $http({
       method: 'POST',
       url: '/api/links',
-      data: link
+      data: newlink
     })
     .then(function (resp) {
+      console.log("returning response from data server");
       return resp;
     });
   };
+  var navLink = function (link) {
+    console.log('This is the params: ', link.code);
+    return $http({
+      method: 'GET',
+      url: '/' + link.code,
+      params: link,
+      headers: {'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With' }
+    })
+    .then(function (res) {
+
+      console.log('Leaving Site!');
+    });
+  };
+
+//define NavToLink function and connect in links.js
+//$http has a params key.  set this to the passed in object.code.
+// send a GET request to '/:code', the response SHOULD be the
+// link we should navigate to.
   return {
     getAll: getAll,
-    addOne: addOne
+    addOne: addOne,
+    navLink: navLink
   };
 })
 .factory('Auth', function ($http, $location, $window) {
