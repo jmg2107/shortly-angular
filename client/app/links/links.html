@@ -1,11 +1,11 @@
-<div id='container'>
+<div id='container' ng-controller='LinksController'>
   <!-- Your html here -->
-    <img src='assets/redirect_icon.png'/>
-    <div class = 'info' ng-controller='LinksController'>
-      <div class='visits'><span class='count' ng-model='data.links[0].visits'>{{data.links[0].visits}}</span>Visits</div>
-      <div class='title' ng-model='data.links[0].title'>{{data.links[0].title}}</div>
-      <div class='original' ng-model='data.links[0].url'>{{data.links[0].url}}</div>
-      <div class='newURL' ng-model='data.links[0]' ng-click='navtoLink(data.links[0])'>{{data.links[0].base_url}}/{{data.links[0].code}}</div>
+      <input class='text' name='search' ng-model='item'>
+    <div class = 'info' ng-repeat='item in data.links | filter:item'>
+      <img src='assets/redirect_icon.png'/>
+      <div class='visits'><span class='count' ng-model='item.visits'>{{item.visits}}</span>Visits</div>
+      <div class='title' ng-model='item.title'>{{item.title}}</div>
+      <div class='original' ng-model='item.url'>{{item.url}}</div>
+      <a href='{{item.base_url}}/{{item.code}}' class='newURL' ng-model='item' ng-click='navtoLink(item)'>{{item.base_url}}/{{item.code}}</a>
     </div>
 </div>
-

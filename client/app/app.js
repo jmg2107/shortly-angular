@@ -23,14 +23,20 @@ angular.module('shortly', [
     .when('/shorten', {
       templateUrl: 'app/shorten/shorten.html',
       controller: 'ShortenController'
+    })
+    .otherwise('/links', {
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController'
     });
 
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
 
-
     $httpProvider.interceptors.push('AttachTokens');
+    // $httpProvider.defaults.useXDomain = true;
+    // $httpProvider.defaults.headers.common = 'Content-Type: application/json';
+    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 })
 .factory('AttachTokens', function ($window) {
   // this is an $httpInterceptor
