@@ -1,0 +1,18 @@
+<div id='container'>
+<!-- Your code here -->
+  <script src='server/config/utils.js'></script>
+  <form ng-controller='ShortenController' name='shorten'>
+      <input class='text' type='url' name='url' ng-model='link.url' required>
+      {{link.url}}
+      <span ng-show="shorten.url.$invalid">The URL is required.</span>
+      <input type='submit' value='Shorten' ng-click='addLink(link)'>
+  </form>
+  <img class='spinner' src='assets/spiffygif_46x46.gif'>
+  <div class='message'></div>
+
+</div>
+
+
+
+
+

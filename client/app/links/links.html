@@ -1,0 +1,11 @@
+<div id='container' ng-controller='LinksController'>
+  <!-- Your html here -->
+      <input class='text' name='search' ng-model='item'>
+    <div class = 'info' ng-repeat='item in data.links | filter:item'>
+      <img src='assets/redirect_icon.png'/>
+      <div class='visits'><span class='count' ng-model='item.visits'>{{item.visits}}</span>Visits</div>
+      <div class='title' ng-model='item.title'>{{item.title}}</div>
+      <div class='original' ng-model='item.url'>{{item.url}}</div>
+      <a href='{{item.base_url}}/{{item.code}}' class='newURL' ng-model='item' ng-click='navtoLink(item)'>{{item.base_url}}/{{item.code}}</a>
+    </div>
+</div>
